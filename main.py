@@ -31,7 +31,10 @@ def search_papers(query: str = Query(..., description="Search query"), limit: in
         results.extend([
             {
                 "title": item["title"][0] if "title" in item else "No title",
-                "authors": [author["given"] + " " + author["family"] for author in item.get("author", [])],
+                "authors": [
+    (author.get("given", "") + " " + author.get("family", "")).strip()
+    for author in item.get("author", [])
+],
                 "abstract": None,
                 "doi": item.get("DOI"),
                 "url": item.get("URL"),
