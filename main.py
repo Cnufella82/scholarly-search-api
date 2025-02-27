@@ -1,7 +1,15 @@
-from fastapi import FastAPI, Query
-import requests
+from fastapi import FastAPI
 
 app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the Scholarly Search API!"}
+
+@app.get("/search")
+def search_papers(query: str, limit: int = 10):
+    return {"query": query, "limit": limit, "results": []}
+
 
 # API Endpoints for CrossRef, Semantic Scholar, and CORE
 CROSSREF_API = "https://api.crossref.org/works"
