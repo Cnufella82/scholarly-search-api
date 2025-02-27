@@ -13,7 +13,10 @@ CORE_API_KEY = "YOUR_CORE_API_KEY"
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to the Scholarly Search API!"}
+    return {
+        "message": "Welcome to the Scholarly Search API!",
+        "privacy_policy": "https://github.com/Cnufella82/scholarly-search-api/blob/main/privacy_policy.md"
+    }
 
 @app.get("/search")
 def search_papers(query: str = Query(..., description="Search query"), limit: int = 10):
